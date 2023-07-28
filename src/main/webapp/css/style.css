@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.containerAd{
+
+	height: 87.5vh;
+	display: flex;
+}
+.leftSide{
+	background-color:#e6e6e6;
+	width: 20%
+}
