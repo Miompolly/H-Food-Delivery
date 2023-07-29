@@ -41,8 +41,12 @@ public class Register1 extends HttpServlet {
 		
 		db.addUser(user1);
 		ResultSet result=db.getUser(loguser1);
+		
 		String userRole=null;
 		String names=null;
+		  int pendingOrderCount = db.getPendingOrderCount();
+		    int completedOrderCount = db.getCompletedOrderCount();
+		    int ConcelledOrderCount = db.getConclledOrderCount();
 		if(result!=null) {
 			try {
 				if(result.next()) {
@@ -54,6 +58,11 @@ public class Register1 extends HttpServlet {
 				if(userRole.equals("admin")) {
 					HttpSession session = request.getSession();
                     session.setAttribute("fullName", names);
+                    session.setAttribute("pendingOrderCount", pendingOrderCount);
+                    session.setAttribute("completedOrderCount", completedOrderCount);
+                    session.setAttribute("ConcelledOrderCount", ConcelledOrderCount);
+                    
+                    
 					response.sendRedirect("adminDashboard.jsp");
 				}
 				}
@@ -62,6 +71,12 @@ public class Register1 extends HttpServlet {
 				e.printStackTrace();
 			}
 			}
+		
+
+
+	    
+	    
+
 		
 		
 	  

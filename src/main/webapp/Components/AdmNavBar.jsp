@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-rad">
 <div class="container">
   <div class="container-fluid text-align-left">
     <a class="navbar-brand" href="adminDashboard.jsp"><span class="fs-3 ">H-Food</span><img src="./food_images/salad.png" ><span class="fs-3">Delivery

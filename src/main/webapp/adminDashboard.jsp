@@ -22,18 +22,23 @@ padding-bottom:5px;
 }
 .leftSide li:hover{
 height: 100%;
-width: 80%;
-background-color: black;
+width: 90%;
+background-color: white;
 margin-right: 20px;
 border-radius: 8px;
 color:white;
+padding-right:2rem;
 
 }
-
+ul li a{
+color:white;
+font-weight:bold;
+}
 
 .leftSide a:hover{
 width: 100%;
-color:white;
+color:black;
+font-weight: bold;
 
 }
 .leftSide img{
@@ -46,7 +51,7 @@ gap:2px;
  }
     </style>
 </head>
-<body>
+<body class="body">
     <%@include file="Components/AdmNavBar.jsp" %>
     <div class="containerAd">
         <div class="leftSide">
@@ -71,7 +76,7 @@ gap:2px;
             <ul style="list-style:none;">
              
                 <li class="nav-item">
-                    <a class="nav-link" href="?section=users"><img src="food_images/group.png" style="width:30px;"><span>Users</span></a>
+                    <a class="nav-link" href="?section=users"><img src="food_images/group.png" style="width:30px;color:white;"><span>Users</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="?section=userSetting"><img src="food_images/user-profile.png" style="width:30px;"><span>User Setting</span></a>
@@ -88,7 +93,7 @@ gap:2px;
                     <a class="nav-link" href="?section=setting"><img src="food_images/settings.png" style="width:30px;"><span>Setting</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?section=logout"><img src="food_images/power-off.png" style="width:30px;"><span>Logout</span></a>
+                    <a class="nav-link" href="index.jsp"><img src="food_images/power-off.png" style="width:30px;"><span>Logout</span></a>
                 </li>
             </ul>
         </div>
@@ -99,8 +104,8 @@ gap:2px;
                 String section = request.getParameter("section");
                 if (section == null || section.equals("dashboard")) { %>
                     <div class="section" id="dashboardSection">
-                        <h3>Dashboard Section</h3>
-                     
+                       
+                       <%@include file="Components/dashboard.jsp" %>
                     </div>
             <% } else if (section.equals("orders")) { %>
                     <div class="section" id="ordersSection">
@@ -135,11 +140,6 @@ gap:2px;
             <% } else if (section.equals("setting")) { %>
                     <div class="section" id="settingSection">
                         <h3>Setting Section</h3>
-                      
-                    </div>
-            <% } else if (section.equals("logout")) { %>
-                    <div class="section" id="logoutSection">
-                        <h3>Logout Section</h3>
                       
                     </div>
             <% } else { %>

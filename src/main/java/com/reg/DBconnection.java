@@ -73,15 +73,7 @@ public class DBconnection {
 			stm.setString(1, loguser1.getForm_email());
 			stm.setString(2, loguser1.getForm_password());
 			row=stm.executeQuery();
-			/*
-			 * if(row.next()){ String role=row.getString("Role");
-			 * System.out.println("Access granted ");
-			 * 
-			 * }
-			 */
-			
-			
-			
+	
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
@@ -91,6 +83,59 @@ public class DBconnection {
 		
 	}
 	
+    public int getPendingOrderCount() {
+        int count = 0;
+        loadDriver();
+        Connection cnx = getCon();
+        String sql = "SELECT COUNT(*) AS pending_count FROM orders WHERE order_status = 'pending'";
+        try {
+            PreparedStatement stm = cnx.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("pending_count");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public int getCompletedOrderCount() {
+        int count = 0;
+        loadDriver();
+        Connection cnx = getCon();
+        String sql = "SELECT COUNT(*) AS completed_count FROM orders WHERE order_status = 'completed'";
+        try {
+            PreparedStatement stm = cnx.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("completed_count");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+    
+    public int getConclledOrderCount() {
+        int count = 0;
+        loadDriver();
+        Connection cnx = getCon();
+        String sql = "SELECT COUNT(*) AS concelled FROM orders WHERE order_status = 'concelled'";
+        try {
+            PreparedStatement stm = cnx.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("concelled");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 	
 	
 }
