@@ -73,16 +73,15 @@ public class DBconnection {
 			stm.setString(1, loguser1.getForm_email());
 			stm.setString(2, loguser1.getForm_password());
 			row=stm.executeQuery();
-			if(row.next()) {
-				String role=row.getString("Role");
-				System.out.println("Access granted ");
-				if(role.equals("user")) {
-					System.out.println("Your are '"+role+"' Go to UserDashboad");
-				}else {
-					System.out.println("Your are '"+role+"' Go to AdminDashboad");
-				}
-
-			}
+			/*
+			 * if(row.next()){ String role=row.getString("Role");
+			 * System.out.println("Access granted ");
+			 * 
+			 * }
+			 */
+			
+			
+			
 		} catch (SQLException e) {
 		
 			e.printStackTrace();

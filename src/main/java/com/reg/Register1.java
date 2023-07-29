@@ -1,11 +1,14 @@
 package com.reg;
 
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.HttpSession;
 
 public class Register1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,7 +24,7 @@ public class Register1 extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fullname=request.getParameter("name");
 		String phone=request.getParameter("phone");
@@ -37,7 +40,33 @@ public class Register1 extends HttpServlet {
 		db.getCon();
 		
 		db.addUser(user1);
-		db.getUser(loguser1);
+		ResultSet result=db.getUser(loguser1);
+		String userRole=null;
+		String names=null;
+		if(result!=null) {
+			try {
+				if(result.next()) {
+				userRole=result.getString("Role");
+				names=result.getString("FullName");
+				
+				System.out.println(names);
+				
+				if(userRole.equals("admin")) {
+					HttpSession session = request.getSession();
+                    session.setAttribute("fullName", names);
+					response.sendRedirect("adminDashboard.jsp");
+				}
+				}
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+			}
+			}
+		
+		
+	  
+		
+		
 	}
 
 }
