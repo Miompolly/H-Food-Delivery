@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,7 @@ gap:2px;
                     <a class="nav-link" href="?section=orders"><img alt="" src="food_images/order.png" style="width:30px;"><span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?section=products"><img src="food_images/fast-food.png" style="width:30px;"><span>Products</span></a>
+                    <a class="nav-link" href="?section=products"><img src="food_images/fast-food.png" style="width:30px;"><span>Meals</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="?section=guest"><img src="food_images/departure.png"><span> Guest</span></a>
@@ -114,7 +115,7 @@ gap:2px;
                     </div>
             <% } else if (section.equals("products")) { %>
                     <div class="section" id="productsSection">
-                        <h3>Products Section</h3>
+                     <%@include file="Components/meals.jsp" %>
                     
                     </div>
             <% } else if (section.equals("guest")) { %>

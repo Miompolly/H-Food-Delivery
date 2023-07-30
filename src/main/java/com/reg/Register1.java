@@ -1,9 +1,14 @@
 package com.reg;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,6 +52,10 @@ public class Register1 extends HttpServlet {
 		  int pendingOrderCount = db.getPendingOrderCount();
 		    int completedOrderCount = db.getCompletedOrderCount();
 		    int ConcelledOrderCount = db.getConclledOrderCount();
+		    ResultSet meResults=db.getAllMeals();
+		   
+		    
+
 		if(result!=null) {
 			try {
 				if(result.next()) {
@@ -61,7 +70,7 @@ public class Register1 extends HttpServlet {
                     session.setAttribute("pendingOrderCount", pendingOrderCount);
                     session.setAttribute("completedOrderCount", completedOrderCount);
                     session.setAttribute("ConcelledOrderCount", ConcelledOrderCount);
-                    
+                   
                     
 					response.sendRedirect("adminDashboard.jsp");
 				}
@@ -72,16 +81,31 @@ public class Register1 extends HttpServlet {
 			}
 			}
 		
+		
+		try {
+	        while (meResults.next()) {
+	            int foodId = meResults.getInt("ID");
+	            String foodName = meResults.getString("FoodName");
+	            String quantity = meResults.getString("Quantity");
+	            String price = meResults.getString("Price");
+	            String totalPrice = meResults.getString("TotalPrice");
+	            String image = meResults.getString("Image");
+	            
+	            System.out.println(foodName);
 
+	        }
 
-	    
-	    
+	       
+	       
 
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("no data get it" + e.getMessage());
+	    }
 		
 		
-	  
-		
-		
-	}
 
-}
+		    
+	}}
+
+

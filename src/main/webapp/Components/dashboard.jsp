@@ -48,69 +48,20 @@
     </c:if>
     
     </span>
-        	 </div>
+    </div>
    </div>
    
 
    </div>
-<div>
-    <canvas id="orderLineChart" width="400" height="200"></canvas>
+<div class="driverFood" style="display:flex; margin-top:1.3rem; border-radius:8px;gap:1rem;" >
+
+<div class="driver"> <img src="food_images/unnamed-1-42-768x480.jpg" style="width:66vh;height:40vh;border-radius:8px;"></div>
+<div class="driver"><img src="food_images/unnamed-1-41.jpg" style="width:66vh;height:40vh;border-radius:8px;"></div>
 </div>
 
     </div>
     
-    <script>
-    // Sample data (replace with your actual data)
-    const dates = ["2023-07-01", "2023-07-02", "2023-07-03", ...];
-    const completedOrders = [5, 8, 10, ...];
-    const pendingOrders = [3, 6, 7, ...];
-    const cancelledOrders = [1, 2, 3, ...];
-
-    // Get the canvas element
-    const ctx = document.getElementById('orderLineChart').getContext('2d');
-
-    // Create the line chart
-    const lineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: dates,
-            datasets: [
-                {
-                    label: 'Completed Orders',
-                    data: completedOrders,
-                    borderColor: 'green',
-                    fill: false
-                },
-                {
-                    label: 'Pending Orders',
-                    data: pendingOrders,
-                    borderColor: 'blue',
-                    fill: false
-                },
-                {
-                    label: 'Cancelled Orders',
-                    data: cancelledOrders,
-                    borderColor: 'red',
-                    fill: false
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day'
-                    }
-                },
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+   
     
  
           

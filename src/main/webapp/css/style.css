@@ -125,6 +125,41 @@ border-radius: 8px;
 }
 
 
+.driverFood{
+	
+	width: 100%;
+	height: 60vh;
+	display: flex;
+}
+.driver{
+	width: 50%;
+}
 
+.meal{
+	height: 2rem;
+	width: 5rem;
+	text-align: center;
+	color:white;
+	background-color: darkblue;
+	font-size: 1.4rem;
+	border-radius: 8px;
+	
+	
+	
+}
+.orders .table{
+	width: 80%;
+	
+}
+.meal a{
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+.orders td{
+	background-color: black;color:white;
+	width: 20%;
+	padding-left: 2rem;
+}
 
 

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DBconnection {
 
@@ -136,6 +137,31 @@ public class DBconnection {
         }
         return count;
     }
+    
+public ResultSet getAllMeals() {
+	ResultSet row=null;
+	loadDriver();
+	Connection cnx=getCon();
+	String sql="SELECT * FROM Foods";
+	try {
+		PreparedStatement st=cnx.prepareStatement(sql);
+		row=st.executeQuery();
+	} catch (SQLException e) {
+	
+		e.printStackTrace();
+		System.out.println("No data found !!"+e.getMessage() );
+	}
 	
 	
+	 return row;  
 }
+
+ 
+}
+
+
+
+
+
+    
+
