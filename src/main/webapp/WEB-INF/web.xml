@@ -21,4 +21,14 @@
     <servlet-name>getAllMeals</servlet-name>
     <url-pattern>/getAllMeals</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>foodServer</display-name>
+    <servlet-name>foodServer</servlet-name>
+    <servlet-class>com.reg.foodServer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>foodServer</servlet-name>
+    <url-pattern>/foodServer</url-pattern>
+  </servlet-mapping>
 </web-app>

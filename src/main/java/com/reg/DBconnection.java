@@ -156,7 +156,43 @@ public ResultSet getAllMeals() {
 	 return row;  
 }
 
- 
+
+public void deleteFood(String foodId) {
+	try {
+		if(con!=null) {
+			String sql="DELETE FROM Foods WHERE ID=?";
+			PreparedStatement dst=con.prepareStatement(sql);
+			dst.setString(1, foodId);
+			dst.executeUpdate();
+			dst.close();
+			
+			
+			}
+	}catch(SQLException e) {
+		e.printStackTrace();    	
+		}
+
+}
+public void addMeals(FoodItem foodit) {
+	
+	 loadDriver();
+     Connection cnx = getCon();
+	String sql="INSERT INTO Foods (FoodName,Quantity,Price,TotalPrice,Image) VALUES(?,?,?,?,?)";
+	try {
+		PreparedStatement st=cnx.prepareStatement(sql);
+		st.setString(1,foodit.getFoodName());
+		st.setString(2,foodit.getQuantity());
+		st.setString(3,foodit.getPrice());
+		st.setString(4,foodit.getTotalPrice());
+		st.setString(5,foodit.getTotalPrice());
+		st.executeUpdate();
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+		System.out.println("Not inserted !!"+e.getMessage());
+	}
+	
+}
 }
 
 

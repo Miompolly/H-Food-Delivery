@@ -4,9 +4,11 @@
 
 <div class="container-right">
     <div class="meal"><a href="?section=add">Add +</a></div>
+    
+  
     <div class="orders">
 
-        <table class="table">
+        <table class="table" style="width:70rem;">
             <tr  >
                 <th >No</th>
                 <th >Food Name</th>
@@ -14,7 +16,7 @@
                 <th >Price</th>
                 <th >Total Price</th>
 
-                <th>Action</th>
+                <th style="width:15rem;">Action</th>
             </tr>
 
             <%
@@ -27,19 +29,20 @@
           	   <tr>
           	   <td ><%= rs.getInt("ID") %></td>
 					<td ><%= rs.getString("FoodName") %></td>
-					<td ><%= rs.getString("Quantity") %></td>
-					<td ><%= rs.getString("Price") %></td>
-					<td "><%= rs.getString("TotalPrice") %></td>
+					<td ><%= rs.getInt("Quantity") %></td>
+					<td ><%= rs.getInt("Price") %></td>
+					<td "><%= rs.getInt("TotalPrice") %></td>
 
-					<td ">
-					            
-                    <button class="meal" href="?section=edit" style="background-color: green;">Edit</button>
-                    <button class="meal" style="background-color: red;">Delete</button>
+					<td style="display: flex;gap:1rem;" >
+					  <div class="meal" style="background-color: green;" href="section?edit">   
+					       
+                  <a href="update.jsp?id=<%= rs.getInt("ID") %>">Edit</a>
+                    </div>  
+                    <div class="meal" style="background-color: red;">
+                    <a href="deleteFood.jsp?id=<%= rs.getInt("ID") %>">Delete</a>
+                    </div>
                 </td>
-					
-					
-          	   
-          	   
+
           	   </tr>
             <% }
           

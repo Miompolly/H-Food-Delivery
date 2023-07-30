@@ -7,10 +7,10 @@
     <%@include file="Components/head.jsp" %>
   <style type="text/css">
     label{
-	padding: 5px  opx;
+	
 	
 	font-weight:bold;
-	font-size:20px;
+	font-size:19px;
 }
 .leftSide{
 padding-left:20px;
@@ -143,7 +143,26 @@ gap:2px;
                         <h3>Setting Section</h3>
                       
                     </div>
-            <% } else { %>
+            <% }
+            else if (section.equals("edit")) { %>
+            <div class="section" id="edit">
+                <h3>User edit Section</h3>
+      
+            </div>
+    <% } else if (section.equals("add")) { %>
+            <div class="section" id="add">
+                   <%@include file="Components/addFood.jsp" %>
+               
+            </div>
+    <% } else if (section.equals("delete")) { %>
+            <div class="section" id="delete">
+                <h3>delete Section</h3>
+              
+            </div>
+    <% }
+            
+            
+            else { %>
                  
                     <div class="section" id="defaultSection">
                         <h3>Default Section</h3>
