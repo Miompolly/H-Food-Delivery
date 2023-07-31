@@ -1,16 +1,16 @@
 package com.reg;
 
-import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
+import java.io.IOException;
+import java.io.InputStream;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.Part;
+import jakarta.servlet.annotation.MultipartConfig; // Import the MultipartConfig annotation
 
-/**
- * Servlet implementation class foodServer
- */
+@MultipartConfig // Add the MultipartConfig annotation
 public class foodServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,22 +22,43 @@ public class foodServer extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		
-		FoodItem fd=new FoodItem();
-		
+		String foodName = request.getParameter("foodname");
+        String quantityStr = request.getParameter("quantity");
+        String priceStr = request.getParameter("price");
+
+        int quantity = 0;
+        int price = 0;
+        int totalPrice = 0;
+
+        try {
+            quantity = Integer.parseInt(quantityStr);
+            price = Integer.parseInt(priceStr);
+            totalPrice = quantity * price;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            System.out.println("Error not inserted"+e.getMessage());
+        }
+
+        InputStream inputStream = null;
+        Part filePart = request.getPart("foodImage"); 
+        if (filePart != null) {
+  
+            inputStream = filePart.getInputStream();
+        }
+
+        FoodItem foodItem = new FoodItem(foodName, inputStream, quantity, price, totalPrice);
+        DBconnection db = new DBconnection();
+        db.getCon();
+        db.addMeals(foodItem);
+        response.sendRedirect("adminDashboard.jsp?section=products");
 		
 	}
 

@@ -6,7 +6,7 @@
     <div class="meal"><a href="?section=add">Add +</a></div>
     
   
-    <div class="orders">
+    <div class="order1">
 
         <table class="table" style="width:70rem;">
             <tr  >

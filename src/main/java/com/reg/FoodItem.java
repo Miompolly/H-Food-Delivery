@@ -1,9 +1,13 @@
 package com.reg;
 
-public class FoodItem {
-	String foodName, quantity, price,  totalPrice,  image;
+import java.io.InputStream;
 
-	public String getFoodName() {
+public class FoodItem {
+    String foodName;
+    InputStream image; 
+    int quantity, price, totalPrice;
+
+    public String getFoodName() {
 		return foodName;
 	}
 
@@ -11,50 +15,50 @@ public class FoodItem {
 		this.foodName = foodName;
 	}
 
-	public String getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(String totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-	public String getImage() {
+	public InputStream getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(InputStream image) {
 		this.image = image;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public FoodItem() {
-		super();
-	}
+        super();
+    }
 
-	public FoodItem(String foodName, String quantity, String price, String totalPrice, String image) {
-		super();
-		this.foodName = foodName;
-		this.quantity = quantity;
-		this.price = price;
-		this.totalPrice = totalPrice;
-		this.image = image;
-	}
+    public FoodItem(String foodName, InputStream image, int quantity, int price, int totalPrice) {
+        super();
+        this.foodName = foodName;
+        this.image = image;
+        this.quantity = quantity;
+        this.price = price;
+        this.totalPrice = totalPrice;
+    }
 
-
+ 
 }

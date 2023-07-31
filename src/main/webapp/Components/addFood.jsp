@@ -7,7 +7,7 @@
     <div class="orders">
 
 <div class="container  w-75 p-3">
-        <form>
+        <form action="foodServer" method="post" enctype="multipart/form-data">
         
          <div class="form-group">
                 <h3>ADD MEALS</h3>

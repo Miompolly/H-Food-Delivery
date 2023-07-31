@@ -71,13 +71,17 @@ border-radius: 0px 0px 10px 0px;
 	width: 100%;
 	border-radius: 10px;
 	padding: 30px 50px;
-}
-
+	overflow-y: scroll;
+	margin-bottom: 5rem;
+	border-bottom: 3px solid black;
+	
+	}
 .orders{
 	width: 100%;
 	height:6rem;	
 	display: flex;
 	gap:1%;
+	
 
 	
 }
@@ -148,20 +152,22 @@ border-radius: 8px;
 	
 	
 }
-.orders .table{
-	width: 100%;
-	margin-top: 2rem;
-	
-}
+
 .meal a{
 	color: white;
 	font-weight: bold;
 	text-decoration: none;
 }
-.orders td{
-	background-color: black;color:white;
+.order1{
 
-	padding-left: 2rem;
-}
+	width: 100%;
+	display: flex;
+	gap:1%;
+
+	}
+	/*
+	table{
+		margin-bottom: 2rem;
+	}*/
 
 

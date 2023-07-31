@@ -174,26 +174,57 @@ public void deleteFood(String foodId) {
 
 }
 public void addMeals(FoodItem foodit) {
-	
-	 loadDriver();
-     Connection cnx = getCon();
-	String sql="INSERT INTO Foods (FoodName,Quantity,Price,TotalPrice,Image) VALUES(?,?,?,?,?)";
-	try {
-		PreparedStatement st=cnx.prepareStatement(sql);
-		st.setString(1,foodit.getFoodName());
-		st.setString(2,foodit.getQuantity());
-		st.setString(3,foodit.getPrice());
-		st.setString(4,foodit.getTotalPrice());
-		st.setString(5,foodit.getTotalPrice());
-		st.executeUpdate();
-	} catch (SQLException e) {
-		
-		e.printStackTrace();
-		System.out.println("Not inserted !!"+e.getMessage());
-	}
-	
+    loadDriver();
+    Connection cnx = getCon();
+    
+    // Check if the foodName already exists in the database
+    String checkIfExistsQuery = "SELECT Quantity, Price FROM Foods WHERE FoodName = ?";
+    String insertOrUpdateQuery;
+    try {
+        PreparedStatement checkStmt = cnx.prepareStatement(checkIfExistsQuery);
+        checkStmt.setString(1, foodit.getFoodName());
+        ResultSet rs = checkStmt.executeQuery();
+
+        if (rs.next()) {
+            // Food already exists in the database, update quantity and totalPrice
+            int existingQuantity = rs.getInt("Quantity");
+            int existingPrice = rs.getInt("Price");
+            int updatedQuantity = existingQuantity + foodit.getQuantity();
+            int updatedTotalPrice = (existingQuantity + foodit.getQuantity()) * (existingPrice + foodit.getPrice());
+
+            insertOrUpdateQuery = "UPDATE Foods SET Quantity = ?, Price = ?, TotalPrice = ? WHERE FoodName = ?";
+            PreparedStatement updateStmt = cnx.prepareStatement(insertOrUpdateQuery);
+            updateStmt.setInt(1, updatedQuantity);
+            updateStmt.setInt(2, existingPrice + foodit.getPrice());
+            updateStmt.setInt(3, updatedTotalPrice);
+            updateStmt.setString(4, foodit.getFoodName());
+            updateStmt.executeUpdate();
+            updateStmt.close();
+        } else {
+            // Food does not exist in the database, insert as a new row
+            insertOrUpdateQuery = "INSERT INTO Foods (FoodName, Quantity, Price, TotalPrice, Image) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement insertStmt = cnx.prepareStatement(insertOrUpdateQuery);
+            insertStmt.setString(1, foodit.getFoodName());
+            insertStmt.setInt(2, foodit.getQuantity());
+            insertStmt.setInt(3, foodit.getPrice());
+            insertStmt.setInt(4, foodit.getTotalPrice());
+            insertStmt.setBlob(5, foodit.getImage());
+            insertStmt.executeUpdate();
+            insertStmt.close();
+        }
+
+        rs.close();
+        checkStmt.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        System.out.println("Not inserted / updated !! " + e.getMessage());
+    }
 }
+
+
 }
+
+
 
 
 
