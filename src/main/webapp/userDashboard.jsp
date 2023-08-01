@@ -69,7 +69,7 @@ gap:2px;
                     <a class="nav-link" href="?section=products"><img src="food_images/user-profile.png" style="width:30px;"><span>My Profile</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.jsp"><span>Logout</span></a>
+                    <a class="nav-link" href="index.jsp"><img src="food_images/power-off.png" style="width:30px;"><span>Logout</span></a>
                 </li>
              
             </ul>
@@ -83,59 +83,43 @@ gap:2px;
                 if (section == null || section.equals("dashboard")) { %>
                    
 <div class="container-right">
-     <div style="display:flex;gap:5rem "><h3>ORDER MEALS</h3> <input placeholder="Type meal you want to order" type="search" style="padding-left:1rem;width: 400px;border-radius:8px;"></div>
+     <div style="display:flex;gap:5rem "><h3>ORDER MEALS</h3> 
+     <input id="searchInput"placeholder="Type meal you want to order" type="search" style="padding-left:1rem;width: 400px;border-radius:8px;"></div>
      
      
                 <hr>
     
   
     <div class="order1">
-
-        <table class="table" style="width:70rem;">
-            <tr  >
-                <th >ID</th>
-                <th >Food Name</th>
-     
-                <th >Price</th>
-          
-
-                <th style="width:15rem;">Action</th>
-            </tr>
-
-            <%
-            try {
-            	DBconnection db=new DBconnection();
-            	db.getCon();
-            	ResultSet  rs=db.getAllMeals();
-            	while(rs.next()){
-            	 %>
-          	   <tr>
-          	   <td ><%= rs.getInt("ID") %></td>
-					<td ><%= rs.getString("FoodName") %></td>
-				
-					<td ><%= rs.getInt("Price") %></td>
-				
-
-					<td style="display: flex;gap:1rem;" >
-					  <div class="meal" style="background-color: green;" href="section?edit">   
-					       
-                  <a href="orderFood.jsp?id=<%= rs.getInt("ID") %>">Order</a>
-                    </div>  
-                
-                </td>
-
-          	   </tr>
+    <table class="table" style="width:70rem;">
+        <tr>
+            <th>ID</th>
+            <th>Food Name</th>
+            <th>Price</th>
+            <th style="width:15rem;">Action</th>
+        </tr>
+        <% try {
+            DBconnection db = new DBconnection();
+            db.getCon();
+            ResultSet rs = db.getAllMeals();
+            while (rs.next()) { %>
+                <tr>
+                    <td><%= rs.getInt("ID") %></td>
+                    <td><%= rs.getString("FoodName") %></td>
+                    <td><%= rs.getInt("Price") %></td>
+                    <td style="display: flex;gap:1rem;">
+                        <div class="meal" style="background-color: green;" href="section?edit">
+                            <a href="orderFood.jsp?id=<%= rs.getInt("ID") %>">Order</a>
+                        </div>
+                    </td>
+                </tr>
             <% }
-          
-                }catch(Exception e){
-                	e.printStackTrace();
-                }
-            
-            
-               
-            %>
-        </table>
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        } %>
+    </table>
+</div>
+    
     </div>
 </div>
 
@@ -160,5 +144,31 @@ gap:2px;
     </div>
 
     <%@include file="Components/footer.jsp" %>
+    
+    <script>
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.querySelector(".order1 table");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1]; // Column index 1 for Food Name
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    document.getElementById("searchInput").addEventListener("keyup", filterTable);
+</script>
+    
+    
 </body>
 </html>

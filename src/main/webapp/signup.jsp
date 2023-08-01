@@ -13,7 +13,7 @@
 <div class="card position-absolute top-50 w-50 mx-auto start-50 posistion-absolute translate-middle">
 <div class="card-header text-center"> <h3>Sign Up Form</h3></div>
 <div class="card-body">
-<form action="Register1" method="post">
+<form action="SignupServlet" method="post">
 <div class="form-group">
 <label>Full Names</label>
 <input type="text" name="name" id="name" placeholder="Enter your Full names" required class="form-control">

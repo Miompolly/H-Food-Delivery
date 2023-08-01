@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.mysql.cj.jdbc.Blob;
 
 public class DBconnection {
@@ -46,22 +48,50 @@ public class DBconnection {
 		
 		loadDriver();
 		Connection cnx=getCon();
-	
-		String sql="INSERT INTO users (FullName,Phone,Email,Location,Password,Role)VALUES(?,?,?,?,?,?)";
-		try {
-			PreparedStatement stm=cnx.prepareStatement(sql);
-			stm.setString(1,user1.getFullname());
-			stm.setString(2,user1.getPhone());
-			stm.setString(3,user1.getEmail());
-			stm.setString(4,user1.getLocation());
-			stm.setString(5,user1.getPassword());
-			stm.setString(6,user1.getRole());
-			stm.executeUpdate();
-		} catch (SQLException e) {
 		
-			e.printStackTrace();
-			System.out.println("User not created ,"+e.getMessage());
+	String selectEmail="SELECT * FROM users WHERE email=?";
+	try {
+		PreparedStatement stmE=cnx.prepareStatement(selectEmail);
+		stmE.setString(1, user1.getEmail());
+		ResultSet results=stmE.executeQuery();
+		if(results.next()) {
+			JOptionPane.showMessageDialog(null, "Email already Exist !! ");
+		}else {
+			
+			String sql="INSERT INTO users (FullName,Phone,Email,Location,Password,Role)VALUES(?,?,?,?,?,?)";
+			try {
+				PreparedStatement stm=cnx.prepareStatement(sql);
+				stm.setString(1,user1.getFullname());
+				stm.setString(2,user1.getPhone());
+				stm.setString(3,user1.getEmail());
+				stm.setString(4,user1.getLocation());
+				stm.setString(5,user1.getPassword());
+				stm.setString(6,user1.getRole());
+				int rs=stm.executeUpdate();
+				
+				if(rs>0) {
+					JOptionPane.showMessageDialog(null, "User Created Successfully");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "User not Created !!! Try again");
+				}
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+				System.out.println("User not created ,"+e.getMessage());
+			}
+			
 		}
+		
+		
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+			
+			
+			
+			
 		
 		
 		
@@ -181,8 +211,7 @@ public void deleteFood(String foodId) {
 public void addMeals(FoodItem foodit) {
     loadDriver();
     Connection cnx = getCon();
-    
-    // Check if the foodName already exists in the database
+   
     String checkIfExistsQuery = "SELECT Quantity, Price FROM Foods WHERE FoodName = ?";
     String insertOrUpdateQuery;
     try {
@@ -206,7 +235,7 @@ public void addMeals(FoodItem foodit) {
             updateStmt.executeUpdate();
             updateStmt.close();
         } else {
-            // Food does not exist in the database, insert as a new row
+          
             insertOrUpdateQuery = "INSERT INTO Foods (FoodName, Quantity, Price, TotalPrice, Image) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement insertStmt = cnx.prepareStatement(insertOrUpdateQuery);
             insertStmt.setString(1, foodit.getFoodName());
