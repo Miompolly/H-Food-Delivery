@@ -73,6 +73,8 @@ public class Register1 extends HttpServlet {
                    
                     
 					response.sendRedirect("adminDashboard.jsp");
+				}else {
+					response.sendRedirect("userDashboard.jsp");
 				}
 				}
 			} catch (SQLException e) {

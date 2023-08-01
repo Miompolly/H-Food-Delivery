@@ -9,19 +9,17 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.jsp">Carts</a>
-        </li>
    
-        <li class="nav-item">
-          <a class="nav-link" href="orders.jsp">Orders</a>
-        </li>
+     
           <li class="nav-item">
           <a class="nav-link" href="login.jsp">Login</a>
-        </li>
+          
+          </li>
            <li class="nav-item">
-          <a class="nav-link" href="index.jsp">Logout</a>
-        </li>
+          <a class="nav-link meal" href="signup.jsp">Create </a>
+          
+          </li>
+   
       </ul>
       
     </div>

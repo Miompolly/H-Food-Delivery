@@ -170,4 +170,14 @@ border-radius: 8px;
 		margin-bottom: 2rem;
 	}*/
 
+.disp{
+	width: 200px;
+	height: 300px;
+}
+
+.disp img{
+	width: 200px;
+	height: 80%;
+}
+
 

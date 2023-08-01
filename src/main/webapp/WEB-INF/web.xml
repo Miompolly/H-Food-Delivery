@@ -31,4 +31,14 @@
     <servlet-name>foodServer</servlet-name>
     <url-pattern>/foodServer</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>displayIm</display-name>
+    <servlet-name>displayIm</servlet-name>
+    <servlet-class>com.reg.displayIm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>displayIm</servlet-name>
+    <url-pattern>/displayIm</url-pattern>
+  </servlet-mapping>
 </web-app>

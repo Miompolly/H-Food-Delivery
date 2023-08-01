@@ -1,11 +1,16 @@
 package com.reg;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.cj.jdbc.Blob;
 
 public class DBconnection {
 
@@ -190,12 +195,12 @@ public void addMeals(FoodItem foodit) {
             int existingQuantity = rs.getInt("Quantity");
             int existingPrice = rs.getInt("Price");
             int updatedQuantity = existingQuantity + foodit.getQuantity();
-            int updatedTotalPrice = (existingQuantity + foodit.getQuantity()) * (existingPrice + foodit.getPrice());
+            int updatedTotalPrice = (existingQuantity + foodit.getQuantity()) * ((existingPrice + foodit.getPrice())/2);
 
             insertOrUpdateQuery = "UPDATE Foods SET Quantity = ?, Price = ?, TotalPrice = ? WHERE FoodName = ?";
             PreparedStatement updateStmt = cnx.prepareStatement(insertOrUpdateQuery);
             updateStmt.setInt(1, updatedQuantity);
-            updateStmt.setInt(2, existingPrice + foodit.getPrice());
+            updateStmt.setInt(2, (existingPrice + foodit.getPrice())/2);
             updateStmt.setInt(3, updatedTotalPrice);
             updateStmt.setString(4, foodit.getFoodName());
             updateStmt.executeUpdate();
@@ -220,6 +225,7 @@ public void addMeals(FoodItem foodit) {
         System.out.println("Not inserted / updated !! " + e.getMessage());
     }
 }
+
 
 
 }
