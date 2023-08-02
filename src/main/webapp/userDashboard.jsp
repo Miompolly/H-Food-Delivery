@@ -84,7 +84,7 @@ gap:2px;
                    
 <div class="container-right">
      <div style="display:flex;gap:5rem "><h3>ORDER MEALS</h3> 
-     <input id="searchInput"placeholder="Type meal you want to order" type="search" style="padding-left:1rem;width: 400px;border-radius:8px;"></div>
+     <input id="searchInput" placeholder="Type meal you want to order" type="search" style="padding-left:1rem;width: 400px;border-radius:8px;"></div>
      
      
                 <hr>

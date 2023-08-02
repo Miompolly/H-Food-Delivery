@@ -24,6 +24,7 @@
             	DBconnection db=new DBconnection();
             	db.getCon();
             	ResultSet  rs=db.getAllMeals();
+            	byte[] imageData = null;
             	while(rs.next()){
             	 %>
           	   <tr>

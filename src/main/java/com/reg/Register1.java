@@ -82,26 +82,7 @@ public class Register1 extends HttpServlet {
 			}
 		
 		
-		try {
-	        while (meResults.next()) {
-	            int foodId = meResults.getInt("ID");
-	            String foodName = meResults.getString("FoodName");
-	            String quantity = meResults.getString("Quantity");
-	            String price = meResults.getString("Price");
-	            String totalPrice = meResults.getString("TotalPrice");
-	            String image = meResults.getString("Image");
-	            
-	            System.out.println(foodName);
-
-	        }
-
-	       
-	       
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        System.out.println("no data get it" + e.getMessage());
-	    }
+	
 		
 		
 		    
