@@ -29,7 +29,7 @@
 <tr>
 <th>Name</th>
 <th>Price</th>
-<th>Buy Now</th>
+<th>Order Now</th>
 <th>Cancel</th>
 
 

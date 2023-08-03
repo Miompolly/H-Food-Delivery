@@ -11,19 +11,18 @@
 </head>
   <body>
 <%@include file="Components/navbar.jsp" %>
-<%@include file="Components/slideShow.jsp" %>
-
-<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 95%; margin-left: 2%; 
-display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  
 
 
-;">
+
+
+
+
+
+
+<div class="container">
+<div class="card-header my-3">All Meals</div>
+
+<div class="row">
 <%
 DBconnection db = new DBconnection();
 db.getCon();
@@ -39,18 +38,26 @@ try {
         java.sql.Blob blob = meResults.getBlob("Image");
         byte[] imageData = blob.getBytes(1, (int) blob.length());
 %>
-<div>
-<div class="shadow p-3 mb-5 bg-white rounded">
-<div class="foodImage">
-    <h2><%= foodName %></h2>
-    <img style="width: 360px;height: 300px;gap:2rem;"src="data:image/jpeg;base64, <%=Base64.getEncoder().encodeToString(imageData) %>" alt="<%= foodName %>">
-   </div>
-  <div class="foodImage" style="padding-top:2rem;">
-   <span>Price: <%= price %> Frw</span>
-   <button type="submit">Add to cart</button>
-   <button type="submit">Order</button>
+<div class="col-md-3 my-3">
+
+<div class="card w-100" style="width: 18rem;">
+  <img class="card-img-top" 
+ style="width:100%;height: 200px;"src="data:image/jpeg;base64, <%=Base64.getEncoder().encodeToString(imageData) %>" alt="<%= foodName %>"
+  
+  
+ >
+  <div class="card-body">
+  
+    <h5 class="card-title"><%= foodName %></h5>
+  <h6 class="price">Price : Rwf <%= price %></h6>
+  
+  <div class="mt-3 d-flex justify-content-between">
+     <a href="#" class="btn btn-dark">Add to Cart</a>
+      <a href="#" class="btn btn-primary">Order Now</a>
+  
   </div>
-    
+ 
+  </div>
 </div>
 </div>
 <%
@@ -60,6 +67,7 @@ try {
     System.out.println("no data get it" + e.getMessage());
 }
 %>
+</div>
 
 </div>
 
