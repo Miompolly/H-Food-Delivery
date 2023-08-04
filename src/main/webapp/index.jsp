@@ -7,6 +7,7 @@
 <html>
 <head>
      <title>welcome</title>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <%@include file="Components/head.jsp" %>
 </head>
   <body>
@@ -52,7 +53,8 @@ try {
   <h6 class="price">Price : Rwf <%= price %></h6>
   
   <div class="mt-3 d-flex justify-content-between">
-     <a href="#" class="btn btn-dark">Add to Cart</a>
+<a href="add-to-cart?id=<%= foodId %>" class="btn btn-dark">Add to Cart</a>
+
       <a href="#" class="btn btn-primary">Order Now</a>
   
   </div>
@@ -74,5 +76,16 @@ try {
 
 
  <%@include file="Components/footer.jsp" %>
+ 
+ 
+<script>
+    function addToCart(productId) {
+        $.post("AddToCartServlet", { productId: productId }, function(data) {
+            // Handle the response if needed
+            alert("Item added to cart!");
+        });
+    }
+</script>
+ 
 </body>
 </html>
