@@ -1,18 +1,12 @@
 package com.reg;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
-
-import com.mysql.cj.jdbc.Blob;
 
 public class DBconnection {
 
@@ -255,6 +249,86 @@ public void addMeals(FoodItem foodit) {
     }
 }
 
+public boolean deleteMeal(int foodId) {
+	loadDriver();
+    Connection cnx = getCon();
+    
+    String sql="DELETE FROM Foods WHERE ID=?";
+    try {
+		PreparedStatement stm=cnx.prepareStatement(sql);
+		stm.setLong(1, foodId);
+		int rowsAffected=stm.executeUpdate();
+		if(rowsAffected>0) {
+			return true;
+		}
+	} catch (SQLException e) {
+	    System.out.println("Failed to delete "+e.getMessage());
+		e.printStackTrace();
+	}
+    finally {
+        try {
+            cnx.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	
+	return false;
+   
+}
+
+public void updateMeals(UpdateMeal updatemeal) {
+	loadDriver();
+    Connection cnx = getCon();
+	String sql="UPDATE Foods SET FoodName=? AND Price=? WHERE ID=?";
+	
+	try {
+		PreparedStatement updStm=cnx.prepareStatement(sql);
+		updStm.setString(1, updatemeal.getFoodname());
+		updStm.setInt(2, updatemeal.getPrice());
+		updStm.setInt(3, updatemeal.getFoodId());
+		updStm.executeUpdate();
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+		System.out.println("Failed to update !! "+e.getMessage());
+	}
+	
+}
+public String insertOrder(orderSetterAndGetter order) {
+	String mss="success";
+    loadDriver();
+    Connection cnx =getCon();
+
+    String sql = "INSERT INTO orders (price, quantity, TotalPrice, FoodID, FoodName, orderEmail, Order_status, Schedule_time) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+
+ 
+    try {
+        PreparedStatement stmt = cnx.prepareStatement(sql);
+        stmt.setInt(1, order.getPrice());
+        stmt.setInt(2, order.getQuantity());
+        stmt.setInt(3, order.getTotalPrice());
+        stmt.setInt(4, order.getFoodID());
+        stmt.setString(5, order.getFoodName());
+        stmt.setString(6, order.getOrderEmail());
+        stmt.setString(7, order.getOrder_status());
+        stmt.setString(8, order.getSchedule_time());
+        int rowsInserted = stmt.executeUpdate();
+        if (rowsInserted > 0) {
+           JOptionPane.showMessageDialog(null, "Your order completed");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Order Failed");
+
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        System.out.println("connected "+e.getMessage());
+    } 
+
+    return mss;
+}
 
 
 }

@@ -59,8 +59,12 @@ public class Register1 extends HttpServlet {
 				if(result.next()) {
 				userRole=result.getString("Role");
 				names=result.getString("FullName");
-				
-				System.out.println(names);
+			    String	emailLog=result.getString("Email");
+			
+		
+			    
+			    
+		
 				
 				if(userRole.equals("admin")) {
 					HttpSession session = request.getSession();
@@ -72,7 +76,11 @@ public class Register1 extends HttpServlet {
                     
 					response.sendRedirect("adminDashboard.jsp");
 				}else {
-					response.sendRedirect("userDashboard.jsp");
+					HttpSession session = request.getSession();
+                    session.setAttribute("fullName", names);
+                    session.setAttribute("Email", emailLog);
+                    System.out.println(emailLog);
+					response.sendRedirect("logedUser.jsp");
 				}
 				}
 			} catch (SQLException e) {

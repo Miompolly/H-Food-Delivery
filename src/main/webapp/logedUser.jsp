@@ -11,7 +11,7 @@
     <%@include file="Components/head.jsp" %>
 </head>
   <body>
-<%@include file="Components/navbar.jsp" %>
+<%@include file="Components/logedUserNav.jsp" %>
 
 
 
@@ -53,9 +53,12 @@ try {
   <h6 class="price">Price : Rwf <%= price %></h6>
   
   <div class="mt-3 d-flex justify-content-between">
-<a href="add-to-cart?id=<%= foodId %>" class="btn btn-dark">Add to Cart</a>
+<div class="mt-3 d-flex justify-content-between">
+    <a href="add-to-cart?id=<%= foodId %>" class="btn btn-dark">Add to Cart</a>
+   <a href="orderForm.jsp?foodId=<%= foodId %>&foodname=<%= foodName %>&price=<%= price %>&email=<%= session.getAttribute("Email") %>" class="btn btn-primary">Order Now</a>
 
-      <a href="#" class="btn btn-primary" >Order Now</a>
+</div>
+
   
   </div>
  
