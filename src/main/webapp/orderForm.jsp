@@ -56,8 +56,20 @@ gap:2px;
     <%@include file="Components/AdmNavBar.jsp" %>
     <div class="containerAd">
         <div class="leftSide">
-            <a href="logedUser.jsp">Back</a>
+           
             
+            <li class="nav-item">
+                    <a class="nav-link" href="?section=orders"> <a href="logedUser.jsp">Back</a>
+                </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="?section=orders"><img alt="" src="food_images/order.png" style="width:30px;"><span>My Order</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?section=products"><img src="food_images/user-profile.png" style="width:30px;"><span>My Profile</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp"><img src="food_images/power-off.png" style="width:30px;"><span>Logout</span></a>
+                </li>
         </div>
         <div class="rightSide">
            <div class="container-right">

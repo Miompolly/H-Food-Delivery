@@ -331,6 +331,23 @@ public String insertOrder(orderSetterAndGetter order) {
 }
 
 
+public ResultSet getMyOrder(CurrentUser curruser) {
+	ResultSet row=null;
+	   loadDriver();
+	 Connection cnx =getCon();
+	 
+	 String sql="SELECT * FROM orders WHERE email=?";
+	 try {
+		PreparedStatement stmt = cnx.prepareStatement(sql);
+		row=stmt.executeQuery();
+	} catch (SQLException e) {	
+		e.printStackTrace();
+	System.out.println("Failed get data"+e.getMessage());
+	}
+	 
+	return row;
+}
+
 }
 
 
