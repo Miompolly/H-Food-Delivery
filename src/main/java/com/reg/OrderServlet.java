@@ -44,8 +44,8 @@ public class OrderServlet extends HttpServlet {
 		        try {
 		            foodId = Integer.parseInt(foodIdStr);
 		        } catch (NumberFormatException e) {
-		            // Handle the exception, e.g., log an error message or take appropriate action
-		            e.printStackTrace(); // Printing the stack trace for demonstration purposes
+		           
+		            e.printStackTrace(); 
 		        }
 		    }
 		

@@ -32,12 +32,13 @@
 					<td ><%= rs.getString("FoodName") %></td>
 					<td ><%= rs.getInt("Quantity") %></td>
 					<td ><%= rs.getInt("Price") %></td>
-					<td "><%= rs.getInt("TotalPrice") %></td>
+					<td ><%= rs.getInt("TotalPrice") %></td>
 
 					<td style="display: flex;gap:1rem;" >
 					  <div class="meal" style="background-color: green;" href="section?edit">   
 					       
-                  <a href="update.jsp?id=<%= rs.getInt("ID") %>">Edit</a>
+                  <a href="update.jsp?id=<%= rs.getInt("ID") %>&FoodName=<%= rs.getString
+                  ("FoodName") %>&Quantity=<%= rs.getInt("Quantity") %>&Price=<%= rs.getInt("Price") %>">Edit</a>
                     </div>  
                     <div class="meal" style="background-color: red;">
                     <a href="deleteFood.jsp?id=<%= rs.getInt("ID") %>">Delete</a>

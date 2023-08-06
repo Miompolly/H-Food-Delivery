@@ -348,6 +348,96 @@ public ResultSet getMyOrder(CurrentUser curruser) {
 	return row;
 }
 
+
+
+public ResultSet getAllOrders() {
+	ResultSet row=null;
+	   loadDriver();
+	 Connection cnx =getCon();
+	 
+	 String sql="SELECT * FROM orders";
+	 try {
+		PreparedStatement stmt = cnx.prepareStatement(sql);
+		row=stmt.executeQuery();
+	} catch (SQLException e) {	
+		e.printStackTrace();
+	System.out.println("Failed get data"+e.getMessage());
+	}
+	 
+	return row;
+}
+
+
+public String updateStatus(int OrderID,String Order_Status) {
+	String mssg="Success";
+	   loadDriver();
+	 Connection cnx =getCon();
+	 String sql="UPDATE orders SET Order_status=? WHERE OrderId=?";
+	 try {
+		PreparedStatement stmt = cnx.prepareStatement(sql);
+		stmt.setInt(2, OrderID);
+		stmt.setString(1, Order_Status);
+		stmt.executeUpdate();
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	return mssg;
+	
+}
+
+
+public boolean deleteOrder(int orderId) {
+	loadDriver();
+    Connection cnx = getCon();
+    
+    String sql="DELETE FROM orders WHERE OrderId=?";
+    try {
+		PreparedStatement stm=cnx.prepareStatement(sql);
+		stm.setInt(1, orderId);
+		int rowsAffected=stm.executeUpdate();
+		if(rowsAffected>0) {
+			return true;
+		}
+	} catch (SQLException e) {
+	    System.out.println("Failed to delete "+e.getMessage());
+		e.printStackTrace();
+	}
+    finally {
+        try {
+            cnx.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+	return false;
+  
+}
+
+public String updateMealz(String foodname,int qty,int price,int totalprice,int id) {
+	String mssg="Success";
+	   loadDriver();
+	 Connection cnx =getCon();
+	 String sql="UPDATE Foods SET FoodName=?,Quantity=?,Price=?,TotalPrice=? WHERE ID=?";
+	 try {
+		PreparedStatement stmt = cnx.prepareStatement(sql);
+		
+		stmt.setString(1,foodname );
+		stmt.setInt(2, qty);
+		stmt.setInt(3, price);
+		stmt.setInt(4, totalprice);
+		stmt.setInt(5, id);
+		stmt.executeUpdate();
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	return mssg;
+	
+}
+
+
 }
 
 

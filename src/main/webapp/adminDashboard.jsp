@@ -110,7 +110,7 @@ gap:2px;
                     </div>
             <% } else if (section.equals("orders")) { %>
                     <div class="section" id="ordersSection">
-                        <h3>Orders Section</h3>
+                         <%@include file="Components/ordersAll.jsp" %>
                         
                     </div>
             <% } else if (section.equals("products")) { %>

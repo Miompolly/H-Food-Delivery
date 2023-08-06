@@ -59,7 +59,7 @@ gap:2px;
            
             
             <li class="nav-item">
-                  <a href="adminDashboard.jsp?section=products">Back</a>
+                  <a href="adminDashboard.jsp?section=orders">Back</a>
                 </li>
       
   
@@ -73,29 +73,22 @@ gap:2px;
     <div class="orders">
 
 <div class="container  w-75 p-3">
-        <form action="UpdateFoodServlet" method="post">
+        <form action="updateOrdersStatus" method="post">
         
          <div class="form-group">
-                <h3>UPDATE MEALS</h3>
+                <h3>UPDATE ORDER STATUS</h3>
                 <hr>
                
             </div>
             <div class="form-group">
                 <label for="foodName">Order ID</label>
-                <input type="number" class="form-control" name="Id" id="foodName"  value="<%= request.getParameter("id") %>" readonly>
+                <input type="number" class="form-control" name="orderId" id="foodName"  value="<%= request.getParameter("OrderId") %>" readonly>
             </div>
             <div class="form-group">
-                <label for="foodName">Food Name</label>
-                <input type="text" class="form-control" name="foodname" id="orderStatus"  value="<%= request.getParameter("FoodName") %>" >
+                <label for="foodName">Order Status</label>
+                <input type="text" class="form-control" name="orderStatus" id="orderStatus"  value="<%= request.getParameter("Order_Status") %>" >
             </div>
-              <div class="form-group">
-                <label for="foodName">Quantity</label>
-                <input type="number" class="form-control" name="qty" id="orderStatus"  value="<%= request.getParameter("Quantity") %>" >
-            </div>
-             <div class="form-group">
-                <label for="foodName">Price</label>
-                <input type="number" class="form-control" name="price" id="orderStatus"  value="<%= request.getParameter("Price") %>" >
-            </div>
+             
             
             <button type="submit" class="btn btn-primary">Update Now</button>
         </form>

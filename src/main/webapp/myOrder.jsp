@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.reg.*"  %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,8 +97,8 @@ gap:2px;
         <% try {
             DBconnection db = new DBconnection();
             db.getCon();
-            CurrentUser cn=new CurrentUser();
-            ResultSet rs = db.getMyOrder(cn);
+            
+            ResultSet rs = db.getAllMeals();
             while (rs.next()) { %>
                 <tr>
                     <td><%= rs.getInt("ID") %></td>
@@ -136,8 +136,7 @@ gap:2px;
                 <h3>User edit Section</h3>
       
             </div>
-    <% }
-    %>
+    <% }%>
         </div>
     </div>
 

@@ -44,6 +44,7 @@ public class Register1 extends HttpServlet {
 		
 		
 		ResultSet result=db.getUser(loguser1);
+		ResultSet resultE=null;
 		
 		String userRole=null;
 		String names=null;
@@ -60,10 +61,10 @@ public class Register1 extends HttpServlet {
 				userRole=result.getString("Role");
 				names=result.getString("FullName");
 			    String	emailLog=result.getString("Email");
-			
-		
-			    
-			    
+
+				/*
+				 * CurrentUser curr=new CurrentUser(emailLog); resultE=db.getMyOrder(curr);
+				 */
 		
 				
 				if(userRole.equals("admin")) {
