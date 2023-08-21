@@ -154,7 +154,7 @@ gap:2px;
         tr = table.getElementsByTagName("tr");
 
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1]; // Column index 1 for Food Name
+            td = tr[i].getElementsByTagName("td")[1]; 
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {

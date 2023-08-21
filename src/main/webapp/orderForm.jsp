@@ -92,16 +92,16 @@ gap:2px;
             </div>
              <div class="form-group">
                 <label for="foodName">Food Name</label>
-                <input type="text" class="form-control" name="foodname" id="foodName"  value="<%= request.getParameter("foodname") %>" readonly>
+                <input type="text" class="form-control" name="foodname" id="foodName"  value="<%= request.getParameter("foodname") %>" readonly required>
             </div>
             <div class="form-group">
                 <label for="price">Price </label>
-                <input type="number" class="form-control" name="price" value="<%= request.getParameter("price") %>" readonly >
+                <input type="number" class="form-control" name="price" value="<%= request.getParameter("price") %>" readonly required >
             </div>
             
             <div class="form-group">
                 <label for="quantity">Quantity</label>
-                <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Enter quantity">
+                <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Enter quantity" required>
             </div>
             <div class="form-group">
                 <label for="price">Order Email</label>
@@ -111,7 +111,7 @@ gap:2px;
             </div>
             <div class="form-group">
                 <label for="foodName">Sechdule Time</label>
-                <input type="text" class="form-control" name="date" id="foodName" placeholder="dd/MM/yyyy">
+                <input type="text" class="form-control" name="date" id="foodName" placeholder="dd/MM/yyyy" required>
             </div>
             
             <button type="submit" class="btn btn-primary">Order Now</button>

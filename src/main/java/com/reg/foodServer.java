@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-@MultipartConfig // Add the MultipartConfig annotation
+@MultipartConfig(maxFileSize = 1500000)// Add the MultipartConfig annotation
 public class foodServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

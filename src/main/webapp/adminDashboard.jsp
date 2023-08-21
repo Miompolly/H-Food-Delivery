@@ -68,31 +68,13 @@ gap:2px;
                 <li class="nav-item">
                     <a class="nav-link" href="?section=products"><img src="food_images/fast-food.png" style="width:30px;"><span>Meals</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?section=guest"><img src="food_images/departure.png"><span> Guest</span></a>
-                </li>
-            </ul>
-
-            <label>Configure</label>
-            <ul style="list-style:none;">
+           
              
                 <li class="nav-item">
                     <a class="nav-link" href="?section=users"><img src="food_images/group.png" style="width:30px;color:white;"><span>Users</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?section=userSetting"><img src="food_images/user-profile.png" style="width:30px;"><span>User Setting</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?section=orderSetting"><img src="food_images/orders.png" style="width:30px;"><span>Order Setting</span></a>
-                </li>
-            </ul>
-
-            <label>Account</label>
-            <ul style="list-style:none;">
-             
-                <li class="nav-item">
-                    <a class="nav-link" href="?section=setting"><img src="food_images/settings.png" style="width:30px;"><span>Setting</span></a>
-                </li>
+              
+            
                 <li class="nav-item">
                     <a class="nav-link" href="index.jsp"><img src="food_images/power-off.png" style="width:30px;"><span>Logout</span></a>
                 </li>
@@ -125,7 +107,7 @@ gap:2px;
                     </div>
             <% } else if (section.equals("users")) { %>
                     <div class="section" id="usersSection">
-                        <h3>Users Section</h3>
+                       <%@include file="Components/users.jsp" %>
          
                     </div>
             <% } else if (section.equals("userSetting")) { %>

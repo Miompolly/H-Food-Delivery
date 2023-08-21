@@ -20,7 +20,7 @@
 %>
 
 
-<div class="container-right">
+<div class="container-right" style="padding-left: 0px;">
     
     
   

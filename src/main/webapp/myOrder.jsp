@@ -67,7 +67,9 @@ gap:2px;
                 <li class="nav-item">
                     <a class="nav-link" href="index.jsp"><img src="food_images/power-off.png" style="width:30px;"><span>Logout</span></a>
                 </li>
-             
+             <li>
+             ${Email}
+             </li>
             </ul>
 
         </div>
@@ -84,31 +86,34 @@ gap:2px;
      
      
                 <hr>
-    
+ 
   
     <div class="order1">
     <table class="table" style="width:70rem;">
         <tr>
-            <th>ID</th>
+            <th>OrderId</th>
             <th>Food Name</th>
-            <th>Price</th>
-            <th style="width:15rem;">Action</th>
+            <th>Quantity</th>
+             <th>TotalPrice</th>
+             <th>Order Email</th>
+            <th>Order Status</th>
+           
         </tr>
         <% try {
             DBconnection db = new DBconnection();
-            db.getCon();
-            
-            ResultSet rs = db.getAllMeals();
+            db.getCon();   
+            String userEmail = (String) session.getAttribute("Email"); 
+            ResultSet rs = db.getMyOrder(userEmail);
             while (rs.next()) { %>
                 <tr>
-                    <td><%= rs.getInt("ID") %></td>
+                    <td><%= rs.getInt("OrderId") %></td>
                     <td><%= rs.getString("FoodName") %></td>
-                    <td><%= rs.getInt("Price") %></td>
-                    <td style="display: flex;gap:1rem;">
-                        <div class="meal" style="background-color: green;" href="section?edit">
-                            <a href="orderFood.jsp?id=<%= rs.getInt("ID") %>">Order</a>
-                        </div>
-                    </td>
+                      <td><%= rs.getString("quantity") %></td>
+                    <td><%= rs.getInt("TotalPrice") %></td>
+                        <td><%= rs.getString("orderEmail") %></td>
+                    <td><%= rs.getString("Order_status") %></td>
+                    
+    
                 </tr>
             <% }
         } catch (Exception e) {

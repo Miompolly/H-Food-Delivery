@@ -41,7 +41,7 @@ try {
 %>
 <div class="col-md-3 my-3">
 
-<div class="card w-100" style="width: 18rem;">
+<div class="card w-100" style="width: 18rem;diplay:block;">
   <img class="card-img-top" 
  style="width:100%;height: 200px;"src="data:image/jpeg;base64, <%=Base64.getEncoder().encodeToString(imageData) %>" alt="<%= foodName %>"
   
@@ -54,7 +54,7 @@ try {
   
   <div class="mt-3 d-flex justify-content-between">
 <div class="mt-3 d-flex justify-content-between">
-    <a href="add-to-cart?id=<%= foodId %>" class="btn btn-dark">Add to Cart</a>
+<%--     <a href="add-to-cart?id=<%= foodId %>" class="btn btn-dark">Add to Cart</a> --%>
    <a href="orderForm.jsp?foodId=<%= foodId %>&foodname=<%= foodName %>&price=<%= price %>&email=<%= session.getAttribute("Email") %>" class="btn btn-primary">Order Now</a>
 
 </div>
@@ -82,13 +82,32 @@ try {
  
  
 <script>
-    function addToCart(productId) {
-        $.post("AddToCartServlet", { productId: productId }, function(data) {
-            // Handle the response if needed
-            alert("Item added to cart!");
-        });
-    }
+
+$(document).ready(function() {
+    $("#mealFilter").on("keyup", function() {
+        var input, filter, cards, card, i, txtValue;
+        input = $(this).val().toUpperCase();
+        cards = $(".card");
+        
+        for (i = 0; i < cards.length; i++) {
+            card = cards[i];
+            txtValue = $(card).find(".card-title").text().toUpperCase();
+            
+            if (txtValue.indexOf(input) > -1) {
+                $(card).show();
+            } else {
+                $(card).hide();
+            }
+        }
+    });
+});
+    
 </script>
+
+ 
+ 
+ 
+ 
  
 </body>
 </html>

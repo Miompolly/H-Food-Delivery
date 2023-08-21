@@ -3,14 +3,14 @@ package com.reg;
 public class Cart {
 int id;
 String name;
-String price;
+int price;
 String image;
 int quantity;
   
 public Cart() {
 	super();
 }
-public Cart(int id, String name, String price, String image, int quantity) {
+public Cart(int id, String name, int price, String image, int quantity) {
 	super();
 	this.id = id;
 	this.name = name;
@@ -30,11 +30,11 @@ public String getName() {
 public void setName(String name) {
 	this.name = name;
 }
-public String getPrice() {
+public int getPrice() {
 	return price;
 }
-public void setPrice(String price) {
-	this.price = price;
+public void setPrice(int i) {
+	this.price = i;
 }
 public String getImage() {
 	return image;

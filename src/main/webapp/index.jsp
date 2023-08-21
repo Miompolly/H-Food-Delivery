@@ -21,6 +21,7 @@
 
 
 <div class="container">
+
 <div class="card-header my-3">All Meals</div>
 
 <div class="row">
@@ -53,9 +54,9 @@ try {
   <h6 class="price">Price : Rwf <%= price %></h6>
   
   <div class="mt-3 d-flex justify-content-between">
-<a href="add-to-cart?id=<%= foodId %>" class="btn btn-dark">Add to Cart</a>
+<%-- <a href="add-to-cart?id=<%= foodId %>" class="btn btn-dark">Add to Cart</a> --%>
 
-      <a href="#" class="btn btn-primary" >Order Now</a>
+      <a href="#" class="btn btn-primary" onclick="orderClick()">Order Now</a>
   
   </div>
  
@@ -81,11 +82,51 @@ try {
 <script>
     function addToCart(productId) {
         $.post("AddToCartServlet", { productId: productId }, function(data) {
-            // Handle the response if needed
-            alert("Item added to cart!");
+                    alert("Item added to cart!");
         });
     }
+    function orderClick() {
+    	
+        var userEmail = '<%= (String) session.getAttribute("") %>';
+        if (userEmail && userEmail !='') {
+
+            alert('Please log in to place an order.');
+        } else {
+        	  alert('Please log in to place an order.');
+        }
+    }
+    
+  
+
+    $(document).ready(function() {
+        $("#mealFilter").on("keyup", function() {
+            var input, filter, cards, card, i, txtValue;
+            input = $(this).val().toUpperCase();
+            cards = $(".card");
+            
+            for (i = 0; i < cards.length; i++) {
+                card = cards[i];
+                txtValue = $(card).find(".card-title").text().toUpperCase();
+                
+                if (txtValue.indexOf(input) > -1) {
+                    $(card).show();
+                } else {
+                    $(card).hide();
+                }
+            }
+        });
+    });
+        
+
+
+     
+    
+    
 </script>
+ 
+
+
+ 
  
 </body>
 </html>

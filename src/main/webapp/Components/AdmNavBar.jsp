@@ -19,9 +19,9 @@
    
         <li class="nav-item justify-content-center align-items-center " style="width: 100px;padding-top:0.5rem;">
        
-              <c:if test="${not empty fullName}">
+         
         <p> ${fullName}</p>
-    </c:if>
+  
           
      
         </li>
